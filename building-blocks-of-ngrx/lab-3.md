@@ -10,6 +10,10 @@ Refactor the tickets state to use Entity instead of the hand crafted version you
 ## Instructions
 1. Update the `TicketsStateModel` interface to extend from `EntityState` and give it a generic of type `Ticket`. Remove the properties in it as they will be handled by the `EntityState`.
 
+```typescript
+export interface TicketsStateModel extends EntityState<Ticket>{}
+```
+
 1. Use the `createEntityAdapter` to create a new `ticketsStateAdapter` constant in the `tickets-state-model.init.ts` file and export that.
 
 1. Use the `getInitialState` method from the adapter to set the `ticketsStateModelInitialState` initial state object.
@@ -33,7 +37,7 @@ export const selectTicketAsEntities = createSelector(selectTicketState, selectTi
 
 6. Export the `selectTickets` and `selectTicketsAsEntities` from the index.ts file in the **tickets-state** lib to make them public.
 
-1. Refactor the reducer to use the adapter `addAll` method to set the list of tickets and the `addOne` to set an individual ticket.
+1. Refactor the reducer to use the ticketStateAdapter `addAll` method to set the list of tickets and the `addOne` to set an individual ticket.
 
 1. Update the ticket list component to use the `selectTickets` selector instead of the function literal of `s => s.ticketsStateModel`.
 
